@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhushan Chavan Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Library CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* Custom Scrollbar Styling (WebKit Browsers) */
+        ::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
+            height: 8px; /* Height for horizontal scrollbars (if any) */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; /* Light gray background for the track */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* Gray thumb color (matches the portfolio's indigo-gray theme) */
+            border-radius: 4px; /* Rounded corners for the thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2d3748; /* Darker gray on hover for interactivity */
+        }
+
+        /* Fallback for Firefox (limited support) */
+        * {
+            scrollbar-width: thin; /* Slim scrollbar in Firefox */
+            scrollbar-color: #4a5568 #f1f5f9; /* Thumb and track colors */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center p-3">
+            <h1 class="text-2xl font-extrabold text-indigo-600"><a href="#home">My Portfolio</a></h1>
+            <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="#about" class="hover:text-indigo-500 transition-colors">About</a></li>
+                <li><a href="#skills" class="hover:text-indigo-500 transition-colors">Skills</a></li>
+                <li><a href="#experience" class="hover:text-indigo-500 transition-colors">Experience</a></li>
+                <li><a href="#projects" class="hover:text-indigo-500 transition-colors">Projects</a></li>
+                <li><a href="#education" class="hover:text-indigo-500 transition-colors">Education</a></li>
+                <li><a href="#contact" class="hover:text-indigo-500 transition-colors">Contact</a></li>
+            </ul>
+            <!-- Hamburger Menu for Mobile -->
+            <div class="md:hidden">
+                <button id="menu-btn" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <ul class="flex flex-col space-y-4 p-4 text-center">
+                <li><a href="#about" class="hover:text-indigo-500">About</a></li>
+                <li><a href="#skills" class="hover:text-indigo-500">Skills</a></li>
+                <li><a href="#experience" class="hover:text-indigo-500">Experience</a></li>
+                <li><a href="#projects" class="hover:text-indigo-500">Projects</a></li>
+                <li><a href="#education" class="hover:text-indigo-500">Education</a></li>
+                <li><a href="#contact" class="hover:text-indigo-500">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white text-center relative overflow-hidden">
+        <div class="z-10">
+            <h2 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in">Hey, I’m Bhushan</h2>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto">A Developer crafting seamless, stunning digital experiences.</p>
+            <a href="#projects" class="mt-6 inline-block bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full hover:bg-indigo-100 transition-colors">See My Work</a>
+        </div>
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/subtle-grid.png')]"></div>
+    </header>
+    
+    <!-- About Section -->
+    <section id="about" class="container mx-auto py-16 px-4" data-aos="fade-up">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">About Me</h2>
+        <div class="flex flex-col items-center md:flex-row md:items-start gap-8 max-w-4xl mx-auto">
+            <p class="text-lg text-gray-600 leading-relaxed">
+                I'm a passionate developer with a knack for creating intuitive, high-performing websites. I blend front-end finesse with back-end expertise to bring ideas to life.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="container mx-auto py-16 px-4 " data-aos="fade-up" data-aos-delay="100">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Skills</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105">
+                <h3 class="font-semibold text-xl text-indigo-600">HTML & CSS</h3>
+                <p class="text-gray-600 mt-2">Designing accessible, user-centric interfaces.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105">
+                <h3 class="font-semibold text-xl text-indigo-600">MySQL</h3>
+                <p class="text-gray-600 mt-2">Crafting queries to manage and analyze data.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105">
+                <h3 class="font-semibold text-xl text-indigo-600">Python</h3>
+                <p class="text-gray-600 mt-2">Automating workflows and solving challenges.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Experience</h2>
+        <div class="space-y-8">
+            <div class="flex items-start gap-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
+                    <div class="w-0.5 bg-gray-300 h-full"></div>
+                </div>
+                <div>
+                    <p class="font-semibold text-lg">Web Developer, Intern at HummingByte Pvt. Ltd.</p>
+                    <p class="text-gray-500">Feb 2022 - Mar 2022</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
+                </div>
+                <div>
+                    <p class="font-semibold text-lg">Intern at Internship Studio</p>
+                    <p class="text-gray-500">Feb 2022 - Mar 2022</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with Thumbnails and Links -->
+    <section id="projects" class="container mx-auto py-16 px-4 " data-aos="fade-up" data-aos-delay="300">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-lg transition-transform hover:scale-105">
+                <img src="BIS.png" alt="Bird Species Identification" class="w-full h-40 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h3 class="font-semibold text-xl text-indigo-600">Bird Species Identification</h3>
+                    <p class="text-gray-600 mt-2">Built with Python, scikit-learn, and TensorFlow for model training and inference.</p>
+                    <a href="https://example.com/ecommerce" target="_blank" class="mt-4 inline-block text-indigo-500 hover:underline">Live Demo</a>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg transition-transform hover:scale-105">
+                <img src="LMS.png" alt="Library Management System" class="w-full h-40 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h3 class="font-semibold text-xl text-indigo-600">Library Management System</h3>
+                    <p class="text-gray-600 mt-2">Developed with Django and HTML & CSS.</p>
+                    <a href="https://library-silk-zeta.vercel.app/" target="_blank" class="mt-4 inline-block text-indigo-500 hover:underline">Live Demo</a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg transition-transform hover:scale-105">
+                <img src="portfolio.png" alt="Portfolio Website" class="w-full h-40 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h3 class="font-semibold text-xl text-indigo-600">Portfolio Website</h3>
+                    <p class="text-gray-600 mt-2">A showcase of my skills and projects.</p>
+                    <a href="https://example.com/portfolio" target="_blank" class="mt-4 inline-block text-indigo-500 hover:underline">Live Demo</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="400">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Education</h2>
+        <div class="space-y-8">
+            <div class="flex items-start gap-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
+                    <div class="w-0.5 bg-gray-300 h-full"></div>
+                </div>
+                <div>
+                    <p class="font-semibold text-lg">Bachelor of Engineering in Computer Science</p>
+                    <p class="text-gray-500">2023</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
+                    <div class="w-0.5 bg-gray-300 h-full"></div>
+                </div>
+                <div>
+                    <p class="font-semibold text-lg">H.S.C</p>
+                    <p class="text-gray-500">2019</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with Left-Aligned Text -->
+    <section id="contact" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="500">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Contact</h2>
+        <ul class="list-none space-y-4 text-lg text-gray-700">
+            <li><strong>Mobile:</strong> 
+                <a href="tel:+917387421009" class="hover:text-indigo-500 transition-colors">+91 7387421009</a>
+            </li>
+            <li><strong>Email:</strong> 
+                <a href="mailto:bhushansonar1235@email.com" class="hover:text-indigo-500 transition-colors">bhushansonar1235@email.com</a>
+            </li>
+            <li><strong>GitHub:</strong> 
+                <a href="https://github.com/Bhushan0009" target="_blank" class="hover:text-indigo-500 transition-colors">github.com/Bhushan0009</a>
+            </li>
+            <li><strong>LinkedIn:</strong> 
+                <a href="https://linkedin.com/in/bhushanchavan09" target="_blank" class="hover:text-indigo-500 transition-colors">linkedin.com/in/bhushanchavan09</a>
+            </li>
+        </ul>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="text-center p-3 bg-gray-800 text-white">
+        <p>© 2025 Bhushan Chavan. Built with passion.</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and AOS Initialization -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800, // Animation duration in milliseconds
+            once: true,    // Animations happen only once on scroll
+        });
+    </script>
+</body>
+</html>
