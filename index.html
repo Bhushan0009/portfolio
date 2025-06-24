@@ -250,6 +250,22 @@
             duration: 800, // Animation duration in milliseconds
             once: true,    // Animations happen only once on scroll
         });
+
+        // Change Favicon
+        function updateFavicon() {
+            const favicon = document.getElementById('favicon');
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              favicon.href = 'logo-dark.png';
+            } else {
+              favicon.href = 'logo-light.png';
+            }
+          }
+        
+          // Initial favicon update
+          updateFavicon();
+        
+          // Listen for changes in color scheme
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener', updateFavicon);
     </script>
 </body>
 </html>
