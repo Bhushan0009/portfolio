@@ -236,7 +236,7 @@
         My Resume
     </a>
     
-    <!-- JavaScript for Mobile Menu and AOS Initialization -->
+    <!-- JavaScript for Mobile Menu, AOS Initialization, and Favicon Switching -->
     <script>
         // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
@@ -244,28 +244,28 @@
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
+    
         // Initialize AOS
         AOS.init({
             duration: 800, // Animation duration in milliseconds
             once: true,    // Animations happen only once on scroll
         });
-
-        // Change Favicon
+    
+        // Change Favicon based on system color scheme
         function updateFavicon() {
             const favicon = document.getElementById('favicon');
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-              favicon.href = 'logo_dark.png';
+                favicon.href = 'logo_dark.png';
             } else {
-              favicon.href = 'logo_light.png';
+                favicon.href = 'logo_light.png';
             }
-          }
-        
-          // Initial favicon update
-          updateFavicon();
-        
-          // Listen for changes in color scheme
-          window.matchMedia('(prefers-color-scheme: dark)').addEventListener', updateFavicon);
+        }
+    
+        // Initial favicon update
+        updateFavicon();
+    
+        // Listen for changes in color scheme
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
     </script>
 </body>
 </html>
