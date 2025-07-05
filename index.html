@@ -3,59 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhushan Chavan Portfolio</title>
-    <link rel="icon" type="image/x-icon" id="favicon" href="" />
+    <title>Bhushan Chavan</title>
+    <meta name="description" content="Bhushan Chavan - Full Stack Developer specializing in Python, Django, HTML, CSS, JavaScript, and MySQL. Building intuitive and high-performing web solutions.">
+    <meta name="keywords" content="Bhushan Chavan, Full Stack Developer, Python, Django, HTML, CSS, JavaScript, MySQL">
+    <meta name="author" content="Bhushan Chavan">
+    <meta property="og:title" content="Bhushan Chavan">
+    <meta property="og:description" content="Crafting intuitive and high-performing web solutions. A passionate developer skilled in Python, Django, and modern web technologies.">
+    <meta property="og:image" content="https://bhushanchavan.vercel.app/logo.png">
+    <meta property="og:url" content="https://bhushanchavan.vercel.app">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/x-icon" href="logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS Library CDN -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Font Awesome CDN for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Smooth scrolling for navigation links (CSS property is good to keep) */
         html { scroll-behavior: smooth; }
 
-        /* Custom Scrollbar Styling (WebKit Browsers) */
+        /* Hide Scrollbar for WebKit Browsers (Chrome, Safari, Edge) */
         ::-webkit-scrollbar {
-            width: 8px; /* Width of the scrollbar */
-            height: 8px; /* Height for horizontal scrollbars (if any) */
+            display: none; /* Hides the scrollbar entirely */
+            width: 0;      /* Ensures no space is taken by the scrollbar */
+            height: 0;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9; /* Light gray background for the track */
-            border-radius: 4px; /* Rounded corners */
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #4a5568; /* Gray thumb color (matches the portfolio's indigo-gray theme) */
-            border-radius: 4px; /* Rounded corners for the thumb */
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2d3748; /* Darker gray on hover for interactivity */
-        }
-
-        /* Fallback for Firefox (limited support) */
+        /* Hide Scrollbar for Firefox */
         * {
-            scrollbar-width: thin; /* Slim scrollbar in Firefox */
-            scrollbar-color: #4a5568 #f1f5f9; /* Thumb and track colors */
+            scrollbar-width: none; /* Hides the scrollbar in Firefox */
+        }
+        
+        /* Optional: If you want to support IE/Edge (legacy), though less common */
+        body {
+            -ms-overflow-style: none; /* Hides the scrollbar in IE/Edge */
+        }
+
+        /* Back to Top Button Styling */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px; /* Default bottom position */
+            right: 20px;
+            background-color: #d97706; /* Tailwind yellow-600 */
+            color: white;
+            padding: 12px 15px;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden by default */
+            z-index: 1000;
+            transition: background-color 0.3s ease, opacity 0.3s ease, bottom 0.3s ease; /* Add bottom to transition */
+        }
+
+        #back-to-top:hover {
+            background-color: #b45309; /* Tailwind yellow-700 */
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased">
     
-    <!-- Navigation -->
     <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
         <div class="container mx-auto flex justify-between items-center p-3">
-            <h1 class="text-2xl font-extrabold text-indigo-600"><a href="#home">My Portfolio</a></h1>
-            <ul class="hidden md:flex space-x-8 text-lg font-medium">
-                <li><a href="#about" class="hover:text-indigo-500 transition-colors">About</a></li>
-                <li><a href="#skills" class="hover:text-indigo-500 transition-colors">Skills</a></li>
-                <li><a href="#experience" class="hover:text-indigo-500 transition-colors">Experience</a></li>
-                <li><a href="#projects" class="hover:text-indigo-500 transition-colors">Projects</a></li>
-                <li><a href="#education" class="hover:text-indigo-500 transition-colors">Education</a></li>
-                <li><a href="#contact" class="hover:text-indigo-500 transition-colors">Contact</a></li>
+            <a href="#home" class="nav-link">
+                <img src="logo.png" alt="Bhushan Chavan Logo" class="h-10"> 
+            </a>
+            <ul class="hidden md:flex space-x-8 text-lg font-medium items-center">
+                <li><a href="#about" class="hover:text-yellow-600 transition-colors nav-link">About</a></li>
+                <li><a href="#skills" class="hover:text-yellow-600 transition-colors nav-link">Skills</a></li>
+                <li><a href="#projects" class="hover:text-yellow-600 transition-colors nav-link">Projects</a></li>
+                <li><a href="#contact" class="hover:text-yellow-600 transition-colors nav-link">Contact</a></li>
+                <li>
+                    <a href="Bhushan_Chavan_Resume.pdf" download class="inline-block bg-yellow-600 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-yellow-700 transition-colors text-base">
+                        <i class="fas fa-download mr-2"></i>Resume
+                    </a>
+                </li>
             </ul>
-            <!-- Hamburger Menu for Mobile -->
             <div class="md:hidden">
                 <button id="menu-btn" class="focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,208 +85,314 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
             <ul class="flex flex-col space-y-4 p-4 text-center">
-                <li><a href="#about" class="hover:text-indigo-500">About</a></li>
-                <li><a href="#skills" class="hover:text-indigo-500">Skills</a></li>
-                <li><a href="#experience" class="hover:text-indigo-500">Experience</a></li>
-                <li><a href="#projects" class="hover:text-indigo-500">Projects</a></li>
-                <li><a href="#education" class="hover:text-indigo-500">Education</a></li>
-                <li><a href="#contact" class="hover:text-indigo-500">Contact</a></li>
+                <li><a href="#about" class="hover:text-yellow-600 nav-link">About</a></li>
+                <li><a href="#skills" class="hover:text-yellow-600 nav-link">Skills</a></li>
+                <li><a href="#projects" class="hover:text-yellow-600 nav-link">Projects</a></li>
+                <li><a href="#contact" class="hover:text-yellow-600 nav-link">Contact</a></li>
+                <li>
+                    <a href="Bhushan_Chavan_Resume.pdf" download class="inline-block bg-yellow-600 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-yellow-700 transition-colors text-base">
+                        <i class="fas fa-download mr-2"></i>Resume
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
     
-    <!-- Header -->
-    <header id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white text-center relative overflow-hidden">
-        <div class="z-10">
-            <h2 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in">Hey, I’m Bhushan</h2>
-            <p class="text-xl md:text-2xl max-w-2xl mx-auto">A Developer crafting seamless, stunning digital experiences.</p>
-            <a href="#projects" class="mt-6 inline-block bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full hover:bg-indigo-100 transition-colors">See My Work</a>
-        </div>
-        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/subtle-grid.png')]"></div>
-    </header>
+    <main>
+        <header id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-600 to-yellow-600 text-white text-center relative overflow-hidden p-4">
+            <div class="z-10" data-aos="fade-up">
+                <h2 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in">Hey, I’m Bhushan Chavan</h2>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-6">
+                    Crafting intuitive and high-performing web solutions for your business. <br class="hidden md:block"> A passionate developer skilled in Python, Django, and modern web technologies.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#projects" class="inline-block bg-white text-gray-700 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors nav-link">View My Projects</a>
+                    <a href="Bhushan_Chavan_Resume.pdf" download class="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-gray-700 transition-colors">Download Resume</a>
+                </div>
+            </div>
+            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/subtle-grid.png')]"></div>
+        </header>
+        
+        <section id="about" class="container mx-auto py-16 px-4" data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">About Me</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                <p class="text-lg text-gray-700 leading-relaxed text-center md:text-left">
+                    I'm Bhushan Chavan, a fresh Engineering graduate with a strong passion for developing intuitive and high-performing web solutions. I blend front-end finesse with back-end expertise to bring ideas to life. With robust problem-solving skills and expertise in programming, I'm eager to contribute to innovative organizations and deliver high-quality software solutions.
+                </p>
+            </div>
+        </section>
+        
+        <section id="skills" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">My Expertise</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
+                    <i class="fas fa-desktop text-3xl text-yellow-600"></i>
+                    <div>
+                        <h3 class="font-semibold text-xl text-yellow-600">Frontend</h3>
+                        <p class="text-gray-600 mt-1">HTML, CSS, JavaScript, Tailwind CSS</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
+                    <i class="fas fa-server text-3xl text-yellow-600"></i>
+                    <div>
+                        <h3 class="font-semibold text-xl text-yellow-600">Backend</h3>
+                        <p class="text-gray-600 mt-1">Python, Django</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
+                    <i class="fas fa-database text-3xl text-yellow-600"></i>
+                    <div>
+                        <h3 class="font-semibold text-xl text-yellow-600">Databases</h3>
+                        <p class="text-gray-600 mt-1">MySQL</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
+                    <i class="fas fa-code text-3xl text-yellow-600"></i>
+                    <div>
+                        <h3 class="font-semibold text-xl text-yellow-600">Programming</h3>
+                        <p class="text-gray-600 mt-1">Python, C, C++</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
+                    <i class="fas fa-toolbox text-3xl text-yellow-600"></i>
+                    <div>
+                        <h3 class="font-semibold text-xl text-yellow-600">Tools & Concepts</h3>
+                        <p class="text-gray-600 mt-1">Linux, Git/GitHub, AI/ML Basics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="300">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">My Portfolio | Recent Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
+                    <img src="BIS.png" alt="Bird Species Identification" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Bird Species Identification</h3>
+                        <p class="text-gray-700 text-sm mb-3">
+                            Designed and implemented a system for identifying bird species from audio recordings, leveraging advanced signal processing and neural networks.
+                        </p>
+                        <p class="text-gray-600 text-xs font-semibold mb-4">
+                            Technologies: Python, scikit-learn, TensorFlow, Signal Processing
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="https://bird-identification.up.railway.app" target="_blank" class="text-yellow-600 hover:text-yellow-700 font-medium transition-colors flex items-center">
+                                Live Demo <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                            </a>
+                            <a href="https://github.com/Bhushan0009/bird-identification-system" target="_blank" class="text-gray-500 hover:text-gray-700 transition-colors flex items-center">
+                                GitHub <i class="fab fa-github ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
+                    <img src="LMS.png" alt="Library Management System" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Library Management System</h3>
+                        <p class="text-gray-700 text-sm mb-3">
+                            Developed a comprehensive system to manage library operations, including book lending, returns, and user management, streamlining administrative tasks.
+                        </p>
+                        <p class="text-gray-600 text-xs font-semibold mb-4">
+                            Technologies: Django, HTML, CSS, MySQL
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="https://library-systems.vercel.app" target="_blank" class="text-yellow-600 hover:text-yellow-700 font-medium transition-colors flex items-center">
+                                Live Demo <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                            </a>
+                            <a href="https://github.com/Bhushan0009/library-management-system" target="_blank" class="text-gray-500 hover:text-gray-700 transition-colors flex items-center">
+                                GitHub <i class="fab fa-github ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
+                    <img src="SL.png" alt="Pathology Lab Website" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Pathology Lab Website</h3>
+                        <p class="text-gray-700 text-sm mb-3">
+                            A responsive and modern pathology lab website designed to streamline appointment scheduling for patients and manage lab services efficiently.
+                        </p>
+                        <p class="text-gray-600 text-xs font-semibold mb-4">
+                            Technologies: HTML, CSS, Tailwind CSS, JavaScript, Python, Django
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="https://sunriselab.vercel.app" target="_blank" class="text-yellow-600 hover:text-yellow-700 font-medium transition-colors flex items-center">
+                                Live Demo <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                            </a>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
+                    <img src="MP.png" alt="Portfolio Website" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Personal Portfolio Website</h3>
+                        <p class="text-gray-700 text-sm mb-3">
+                            A responsive and modern personal portfolio website showcasing my skills, experience, and projects to potential clients and recruiters.
+                        </p>
+                        <p class="text-gray-600 text-xs font-semibold mb-4">
+                            Technologies: HTML, CSS, Tailwind CSS, JavaScript.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="https://bhushanchavan.vercel.app" target="_blank" class="text-yellow-600 hover:text-yellow-700 font-medium transition-colors flex items-center">
+                                Live Demo <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                            </a>
+                            <a href="https://github.com/Bhushan0009/portfolio" target="_blank" class="text-gray-500 hover:text-gray-700 transition-colors flex items-center">
+                                GitHub <i class="fab fa-github ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="contact" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="500">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">Get in Touch</h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                <p class="text-lg text-gray-700 mb-6 text-center">Have a project in mind or looking to hire? Feel free to reach out!</p>
+                
+                <form action="#" method="POST" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                        <input type="text" id="name" name="name" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
+                    </div>
+                    <div>
+                        <label for="mobile" class="block text-gray-700 text-sm font-bold mb-2">Mobile Number:</label>
+                        <input type="tel" id="mobile" name="mobile" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
+                        <input type="text" id="subject" name="subject" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+                        <textarea id="message" name="message" rows="5" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full focus:outline-none focus:shadow-outline transition-colors shadow-lg">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-gray-200 text-gray-700 text-center">
+                    <p class="font-semibold text-2xl mb-4">You can also connect with me directly!</p>
+                    <p class="text-lg">I'm always open to new opportunities and collaborations.</p>
+                </div>
+            </div>
+        </section>
+    </main>
     
-    <!-- About Section -->
-    <section id="about" class="container mx-auto py-16 px-4" data-aos="fade-up">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">About Me</h2>
-        <div class="flex flex-col items-center md:flex-row md:items-start gap-8 max-w-4xl mx-auto">
-            <p class="text-lg text-gray-600 leading-relaxed">
-                I'm a passionate developer with a knack for creating intuitive, high-performing websites. I blend front-end finesse with back-end expertise to bring ideas to life.
+    <footer id="main-footer" class="bg-gray-900 text-white py-6 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <p class="text-lg text-gray-400 w-full text-center md:flex-grow md:text-left">
+                &copy; 2025 <a href="https://bhushanchavan.vercel.app/" class="hover:text-white transition-colors duration-300">Bhushan Chavan.</a> Built with passion.
             </p>
-        </div>
-    </section>
-    
-    <!-- Skills Section -->
-    <section id="skills" class="container mx-auto py-16 px-4 " data-aos="fade-up" data-aos-delay="100">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Skills</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105">
-                <h3 class="font-semibold text-xl text-indigo-600">HTML & CSS</h3>
-                <p class="text-gray-600 mt-2">Designing accessible, user-centric interfaces.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105">
-                <h3 class="font-semibold text-xl text-indigo-600">MySQL</h3>
-                <p class="text-gray-600 mt-2">Crafting queries to manage and analyze data.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105">
-                <h3 class="font-semibold text-xl text-indigo-600">Python</h3>
-                <p class="text-gray-600 mt-2">Automating workflows and solving challenges.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105">
-                <h3 class="font-semibold text-xl text-indigo-600">Linux</h3>
-                <p class="text-gray-600 mt-2">System Administration: Linux Basics, File Permissions, Package Management</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="200">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Experience</h2>
-        <div class="space-y-8">
-            <div class="flex items-start gap-4">
-                <div class="flex flex-col items-center">
-                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
-                    <div class="w-0.5 bg-gray-300 h-full"></div>
-                </div>
-                <div>
-                    <p class="font-semibold text-lg">Web Developer, Intern at HummingByte Pvt. Ltd.</p>
-                    <p class="text-gray-500">Feb 2022 - Mar 2022</p>
-                </div>
-            </div>
-            <div class="flex items-start gap-4">
-                <div class="flex flex-col items-center">
-                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
-                </div>
-                <div>
-                    <p class="font-semibold text-lg">Intern at Internship Studio</p>
-                    <p class="text-gray-500">Feb 2022 - Mar 2022</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="container mx-auto py-16 px-4 " data-aos="fade-up" data-aos-delay="300">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg shadow-lg transition-transform hover:scale-105">
-                <img src="BIS.png" alt="Bird Species Identification" class="w-full h-40 object-cover rounded-t-lg">
-                <div class="p-4">
-                    <h3 class="font-semibold text-xl text-indigo-600">Bird Species Identification</h3>
-                    <p class="text-gray-600 mt-2">Built with Python, scikit-learn, and TensorFlow for model training and inference.</p>
-                    <a href="https://bird-identification.up.railway.app/" target="_blank" class="mt-4 inline-block text-indigo-500 hover:underline">Live Demo</a>
-                </div>
-            </div>
             
-            <div class="bg-white rounded-lg shadow-lg transition-transform hover:scale-105">
-                <img src="LMS.png" alt="Library Management System" class="w-full h-40 object-cover rounded-t-lg">
-                <div class="p-4">
-                    <h3 class="font-semibold text-xl text-indigo-600">Library Management System</h3>
-                    <p class="text-gray-600 mt-2">Developed with Django and HTML & CSS.</p>
-                    <a href="https://library-systems.vercel.app/" target="_blank" class="mt-4 inline-block text-indigo-500 hover:underline">Live Demo</a>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-lg transition-transform hover:scale-105">
-                <img src="sl.png" alt="Sunrise Lab Website" class="w-full h-40 object-cover rounded-t-lg">
-                <div class="p-4">
-                    <h3 class="font-semibold text-xl text-indigo-600">Sunrise Pathology Lab</h3>
-                    <p class="text-gray-600 mt-2">A Appointment Booking Website for a Pathology Lab.</p>
-                    <a href="https://sunriselab.vercel.app/" target="_blank" class="mt-4 inline-block text-indigo-500 hover:underline">Live Demo</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="400">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Education</h2>
-        <div class="space-y-8">
-            <div class="flex items-start gap-4">
-                <div class="flex flex-col items-center">
-                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
-                    <div class="w-0.5 bg-gray-300 h-full"></div>
-                </div>
-                <div>
-                    <p class="font-semibold text-lg">Bachelor of Engineering in Computer Science</p>
-                    <p class="text-gray-500">2023</p>
-                </div>
-            </div>
-            <div class="flex items-start gap-4">
-                <div class="flex flex-col items-center">
-                    <div class="w-3 h-3 rounded-full bg-indigo-600"></div>
-                    <div class="w-0.5 bg-gray-300 h-full"></div>
-                </div>
-                <div>
-                    <p class="font-semibold text-lg">H.S.C</p>
-                    <p class="text-gray-500">2019</p>
-                </div>
+            <div class="flex space-x-6 text-2xl justify-center md:justify-end">
+                <a href="tel:+917387421009" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Call me"><i class="fas fa-phone-alt"></i></a>
+                <a href="mailto:bhushansonar1235@email.com" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Email me"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Bhushan0009" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="My GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/bhushanchavan09" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="My LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="500">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Contact</h2>
-        <ul class="list-none space-y-4 text-lg text-gray-700">
-            <li><strong>Mobile:</strong> 
-                <a href="tel:+917387421009" class="hover:text-indigo-500 transition-colors">+91 7387421009</a>
-            </li>
-            <li><strong>Email:</strong> 
-                <a href="mailto:bhushansonar1235@email.com" class="hover:text-indigo-500 transition-colors">bhushansonar1235@email.com</a>
-            </li>
-            <li><strong>GitHub:</strong> 
-                <a href="https://github.com/Bhushan0009" target="_blank" class="hover:text-indigo-500 transition-colors">github.com/Bhushan0009</a>
-            </li>
-            <li><strong>LinkedIn:</strong> 
-                <a href="https://linkedin.com/in/bhushanchavan09" target="_blank" class="hover:text-indigo-500 transition-colors">linkedin.com/in/bhushanchavan09</a>
-            </li>
-        </ul>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="text-center p-3 bg-gray-800 text-white">
-        <p> © 2025 <a href="https://bhushan0009.github.io/bhushanchavan.github.io/" class="hover:text-indigo-500 transition-colors"> Bhushan Chavan. </a> Built with passion. </p>
     </footer>
 
-    <!-- Download Resume -->
-    <a href="Bhushan Chavan Resume.pdf" download class="fixed bottom-4 right-4 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full shadow-lg hover:bg-indigo-700 transition-colors z-50">
-        My Resume
-    </a>
+    <button id="back-to-top" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     
-    <!-- JavaScript for Mobile Menu, AOS Initialization, and Favicon Switching -->
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle functionality
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuItems = mobileMenu.querySelectorAll('a');
+
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-    
-        // Initialize AOS
-        AOS.init({
-            duration: 800, // Animation duration in milliseconds
-            once: true,    // Animations happen only once on scroll
+
+        // Close mobile menu when a link is clicked
+        mobileMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
         });
-    
-        // Change Favicon based on system color scheme
-        function updateFavicon() {
-            const favicon = document.getElementById('favicon');
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                favicon.href = 'logo_dark.png';
-            } else {
-                favicon.href = 'logo_light.png';
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
             }
-        }
-    
-        // Initial favicon update
-        updateFavicon();
-    
-        // Listen for changes in color scheme
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+        });
+        
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Smooth scroll for nav links without updating URL hash
+        document.querySelectorAll('a.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Ensure it's an internal link and not a download link
+                // `target` will be '' or '_self' for internal links, or '_blank' for new tabs
+                // `download` attribute presence indicates a download link
+                if (this.getAttribute('download') === null && (this.target === '' || this.target === '_self')) {
+                    e.preventDefault(); // Prevent default anchor behavior (stops URL hash change)
+
+                    const targetId = this.getAttribute('href').substring(1); // Get the section ID
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70, // Adjust for fixed navbar height (approx 70px)
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+
+        // Back to Top Button functionality
+        const backToTopButton = document.getElementById('back-to-top');
+        const footer = document.getElementById('main-footer'); // Get the footer element
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+
+                const footerTop = footer.getBoundingClientRect().top;
+                const viewportHeight = window.innerHeight;
+                const buttonHeight = backToTopButton.offsetHeight; 
+
+                if (footerTop < viewportHeight) {
+                    backToTopButton.style.bottom = `${(viewportHeight - footerTop) + 20}px`;
+                } else {
+                    backToTopButton.style.bottom = '20px';
+                }
+            } else {
+                backToTopButton.style.display = 'none';
+                backToTopButton.style.bottom = '20px'; 
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>
