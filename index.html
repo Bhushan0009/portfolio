@@ -14,167 +14,221 @@
     <meta property="og:type" content="website">
 
     <link rel="icon" type="image/x-icon" href="logo.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Smooth scrolling for navigation links (CSS property is good to keep) */
         html { scroll-behavior: smooth; }
 
-        /* Hide Scrollbar for WebKit Browsers (Chrome, Safari, Edge) */
         ::-webkit-scrollbar {
-            display: none; /* Hides the scrollbar entirely */
-            width: 0;      /* Ensures no space is taken by the scrollbar */
+            display: none;
+            width: 0;
             height: 0;
         }
 
-        /* Hide Scrollbar for Firefox */
         * {
-            scrollbar-width: none; /* Hides the scrollbar in Firefox */
-        }
-        
-        /* Optional: If you want to support IE/Edge (legacy), though less common */
-        body {
-            -ms-overflow-style: none; /* Hides the scrollbar in IE/Edge */
+            scrollbar-width: none;
         }
 
-        /* Back to Top Button Styling */
+        body {
+            -ms-overflow-style: none;
+        }
+
         #back-to-top {
             position: fixed;
-            bottom: 20px; /* Default bottom position */
+            bottom: 20px;
             right: 20px;
-            background-color: #d97706; /* Tailwind yellow-600 */
+            background-color: #d97706;
             color: white;
-            padding: 12px 15px;
-            border-radius: 9999px; /* Fully rounded */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none; /* Hidden by default */
+            padding: 14px 18px;
+            border-radius: 9999px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            display: none;
             z-index: 1000;
-            transition: background-color 0.3s ease, opacity 0.3s ease, bottom 0.3s ease; /* Add bottom to transition */
+            transition: all 0.3s ease;
+            transform: scale(1);
         }
 
         #back-to-top:hover {
-            background-color: #b45309; /* Tailwind yellow-700 */
+            background-color: #b45309;
+            transform: scale(1.1);
+        }
+
+        #menu-btn .open-icon { display: block; }
+        #menu-btn .close-icon { display: none; }
+        #menu-btn.active .open-icon { display: none; }
+        #menu-btn.active .close-icon { display: block; }
+
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .skill-card:hover .icon {
+            transform: rotate(360deg);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-input:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.3);
+        }
+
+        .form-button {
+            transition: all 0.3s ease;
+        }
+
+        .form-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 640px) {
+            #home h2 {
+                font-size: 2.5rem;
+            }
+            #home p {
+                font-size: 1rem;
+            }
+            .project-card img {
+                height: 180px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased">
-    
+<body class="bg-gray-100 text-gray-900 antialiased">
     <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center p-3">
+        <div class="container mx-auto flex justify-between items-center p-4">
             <a href="#home" class="nav-link">
-                <img src="logo.png" alt="Bhushan Chavan Logo" class="h-10"> 
+                <img src="logo.png" alt="Bhushan Chavan Logo" class="h-12 transition-transform hover:scale-105">
             </a>
-            <ul class="hidden md:flex space-x-8 text-lg font-medium items-center">
+            <ul class="hidden md:flex space-x-10 text-lg font-semibold items-center">
                 <li><a href="#about" class="hover:text-yellow-600 transition-colors nav-link">About</a></li>
                 <li><a href="#skills" class="hover:text-yellow-600 transition-colors nav-link">Skills</a></li>
                 <li><a href="#projects" class="hover:text-yellow-600 transition-colors nav-link">Projects</a></li>
                 <li><a href="#contact" class="hover:text-yellow-600 transition-colors nav-link">Contact</a></li>
                 <li>
-                    <a href="Bhushan Chavan Resume.pdf" download class="inline-block bg-yellow-600 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-yellow-700 transition-colors text-base">
+                    <a href="Bhushan Chavan Resume.pdf" download class="inline-block bg-gradient-to-r from-yellow-600 to-yellow-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:from-yellow-700 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-download mr-2"></i>Resume
                     </a>
                 </li>
             </ul>
             <div class="md:hidden">
-                <button id="menu-btn" class="focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="menu-btn" class="focus:outline-none relative w-8 h-8">
+                    <svg class="open-icon w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                    <svg class="close-icon w-8 h-8 absolute top-0 left-0 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
-            <ul class="flex flex-col space-y-4 p-4 text-center">
-                <li><a href="#about" class="hover:text-yellow-600 nav-link">About</a></li>
-                <li><a href="#skills" class="hover:text-yellow-600 nav-link">Skills</a></li>
-                <li><a href="#projects" class="hover:text-yellow-600 nav-link">Projects</a></li>
-                <li><a href="#contact" class="hover:text-yellow-600 nav-link">Contact</a></li>
+            <ul class="flex flex-col space-y-4 p-6 text-center text-lg font-semibold">
+                <li><a href="#about" class="hover:text-yellow-600 transition-colors nav-link">About</a></li>
+                <li><a href="#skills" class="hover:text-yellow-600 transition-colors nav-link">Skills</a></li>
+                <li><a href="#projects" class="hover:text-yellow-600 transition-colors nav-link">Projects</a></li>
+                <li><a href="#contact" class="hover:text-yellow-600 transition-colors nav-link">Contact</a></li>
                 <li>
-                    <a href="Bhushan Chavan Resume.pdf" download class="inline-block bg-yellow-600 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-yellow-700 transition-colors text-base">
+                    <a href="Bhushan Chavan Resume.pdf" download class="inline-block bg-gradient-to-r from-yellow-600 to-yellow-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:from-yellow-700 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-download mr-2"></i>Resume
                     </a>
                 </li>
             </ul>
         </div>
     </nav>
-    
+
     <main>
-        <header id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-600 to-yellow-600 text-white text-center relative overflow-hidden p-4">
-            <div class="z-10" data-aos="fade-up">
-                <h2 class="text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in">Hey, I’m Bhushan Chavan</h2>
-                <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-6">
-                    Crafting intuitive and high-performing web solutions for your business. <br class="hidden md:block"> A passionate developer skilled in Python, Django, and modern web technologies.
+        <header id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-800 via-gray-700 to-yellow-600 text-white text-center relative overflow-hidden p-6">
+            <div class="z-10" data-aos="zoom-in" data-aos-duration="1000">
+                <h2 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Hey, I’m Bhushan Chavan</h2>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
+                    Crafting intuitive and high-performing web solutions. <br class="hidden md:block"> Passionate about Python, Django, and modern web technologies.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#projects" class="inline-block bg-white text-gray-700 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors nav-link">View My Projects</a>
-                    <a href="Bhushan Chavan Resume.pdf" download class="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-gray-700 transition-colors">Download Resume</a>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#projects" class="inline-block bg-white text-gray-800 font-semibold py-3 px-10 rounded-full shadow-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 nav-link">View My Projects</a>
+                    <a href="Bhushan Chavan Resume.pdf" download class="inline-block bg-transparent border-2 border-white text-white font-semibold py-3 px-10 rounded-full shadow-lg hover:bg-white hover:text-gray-800 transition-all duration-300 transform hover:scale-105">Download Resume</a>
                 </div>
             </div>
-            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/subtle-grid.png')]"></div>
+            <div class="absolute inset-0 opacity-15 bg-[url('https://www.transparenttextures.com/patterns/subtle-grid.png')] animate-pulse"></div>
         </header>
-        
-        <section id="about" class="container mx-auto py-16 px-4" data-aos="fade-up">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">About Me</h2>
-            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+
+        <section id="about" class="container mx-auto py-20 px-6" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-4xl font-bold mb-8 text-gray-800 text-center">About Me</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl p-10 transform transition-all duration-500 hover:shadow-2xl">
                 <p class="text-lg text-gray-700 leading-relaxed text-center md:text-left">
-                    I'm Bhushan Chavan, a fresh Engineering graduate with a strong passion for developing intuitive and high-performing web solutions. I blend front-end finesse with back-end expertise to bring ideas to life. With robust problem-solving skills and expertise in programming, I'm eager to contribute to innovative organizations and deliver high-quality software solutions.
+                    I'm Bhushan Chavan, a recent Engineering graduate with a passion for creating intuitive, high-performing web solutions. I combine front-end creativity with back-end expertise to bring ideas to life. With strong problem-solving skills and a love for coding, I'm excited to contribute to innovative projects and deliver top-quality software.
                 </p>
             </div>
         </section>
-        
-        <section id="skills" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="100">
-            <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">My Expertise</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
-                    <i class="fas fa-desktop text-3xl text-yellow-600"></i>
+
+        <section id="skills" class="container mx-auto py-20 px-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            <h2 class="text-4xl font-bold mb-10 text-gray-800 text-center">My Expertise</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="skill-card bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl flex items-center space-x-6">
+                    <i class="icon fas fa-desktop text-4xl text-yellow-600 transition-transform duration-500"></i>
                     <div>
                         <h3 class="font-semibold text-xl text-yellow-600">Frontend</h3>
-                        <p class="text-gray-600 mt-1">HTML, CSS, JavaScript, Tailwind CSS</p>
+                        <p class="text-gray-600 mt-2">HTML, CSS, JavaScript, Tailwind CSS</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
-                    <i class="fas fa-server text-3xl text-yellow-600"></i>
+                <div class="skill-card bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl flex items-center space-x-6">
+                    <i class="icon fas fa-server text-4xl text-yellow-600 transition-transform duration-500"></i>
                     <div>
                         <h3 class="font-semibold text-xl text-yellow-600">Backend</h3>
-                        <p class="text-gray-600 mt-1">Python, Django</p>
+                        <p class="text-gray-600 mt-2">Python, Django</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
-                    <i class="fas fa-database text-3xl text-yellow-600"></i>
+                <div class="skill-card bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl flex items-center space-x-6">
+                    <i class="icon fas fa-database text-4xl text-yellow-600 transition-transform duration-500"></i>
                     <div>
                         <h3 class="font-semibold text-xl text-yellow-600">Databases</h3>
-                        <p class="text-gray-600 mt-1">MySQL</p>
+                        <p class="text-gray-600 mt-2">MySQL</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
-                    <i class="fas fa-code text-3xl text-yellow-600"></i>
+                <div class="skill-card bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl flex items-center space-x-6">
+                    <i class="icon fas fa-code text-4xl text-yellow-600 transition-transform duration-500"></i>
                     <div>
                         <h3 class="font-semibold text-xl text-yellow-600">Programming</h3>
-                        <p class="text-gray-600 mt-1">Python, C, C++</p>
+                        <p class="text-gray-600 mt-2">Python, C, C++</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 transition-transform hover:scale-105 flex items-center space-x-4">
-                    <i class="fas fa-toolbox text-3xl text-yellow-600"></i>
+                <div class="skill-card bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl flex items-center space-x-6">
+                    <i class="icon fas fa-toolbox text-4xl text-yellow-600 transition-transform duration-500"></i>
                     <div>
                         <h3 class="font-semibold text-xl text-yellow-600">Tools & Concepts</h3>
-                        <p class="text-gray-600 mt-1">Linux, Git/GitHub, AI/ML Basics</p>
+                        <p class="text-gray-600 mt-2">Linux, Git/GitHub, AI/ML Basics</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="300">
-            <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">My Portfolio | Recent Work</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
-                    <img src="BIS.png" alt="Bird Species Identification" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
-                    <div class="p-5">
-                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Bird Species Identification</h3>
-                        <p class="text-gray-700 text-sm mb-3">
-                            Designed and implemented a system for identifying bird species from audio recordings, leveraging advanced signal processing and neural networks.
+        <section id="projects" class="container mx-auto py-20 px-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+            <h2 class="text-4xl font-bold mb-10 text-gray-800 text-center">My Portfolio | Recent Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="BIS.png" alt="Bird Species Identification" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-3">Bird Species Identification</h3>
+                        <p class="text-gray-700 text-sm mb-4">
+                            Designed a system to identify bird species from audio recordings using advanced signal processing and neural networks.
                         </p>
                         <p class="text-gray-600 text-xs font-semibold mb-4">
                             Technologies: Python, scikit-learn, TensorFlow, Signal Processing
@@ -189,13 +243,12 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
-                    <img src="LMS.png" alt="Library Management System" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
-                    <div class="p-5">
-                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Library Management System</h3>
-                        <p class="text-gray-700 text-sm mb-3">
-                            Developed a comprehensive system to manage library operations, including book lending, returns, and user management, streamlining administrative tasks.
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="LMS.png" alt="Library Management System" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-3">Library Management System</h3>
+                        <p class="text-gray-700 text-sm mb-4">
+                            Built a system to manage library operations, including book lending, returns, and user management.
                         </p>
                         <p class="text-gray-600 text-xs font-semibold mb-4">
                             Technologies: Django, HTML, CSS, MySQL
@@ -210,13 +263,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
-                    <img src="SL.png" alt="Pathology Lab Website" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
-                    <div class="p-5">
-                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Pathology Lab Website</h3>
-                        <p class="text-gray-700 text-sm mb-3">
-                            A responsive and modern pathology lab website designed to streamline appointment scheduling for patients and manage lab services efficiently.
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="SL.png" alt="Pathology Lab Website" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-3">Pathology Lab Website</h3>
+                        <p class="text-gray-700 text-sm mb-4">
+                            A modern website for scheduling appointments and managing lab services efficiently.
                         </p>
                         <p class="text-gray-600 text-xs font-semibold mb-4">
                             Technologies: HTML, CSS, Tailwind CSS, JavaScript, Python, Django
@@ -225,19 +277,18 @@
                             <a href="https://sunriselab.vercel.app" target="_blank" class="text-yellow-600 hover:text-yellow-700 font-medium transition-colors flex items-center">
                                 Live Demo <i class="fas fa-external-link-alt ml-2 text-sm"></i>
                             </a>
-                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-xl group">
-                    <img src="MP.png" alt="Portfolio Website" class="w-full h-52 object-cover transition-transform group-hover:scale-110 duration-300" loading="lazy">
-                    <div class="p-5">
-                        <h3 class="font-semibold text-2xl text-yellow-600 mb-2">Personal Portfolio Website</h3>
-                        <p class="text-gray-700 text-sm mb-3">
-                            A responsive and modern personal portfolio website showcasing my skills, experience, and projects to potential clients and recruiters.
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="MP.png" alt="Portfolio Website" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-yellow-600 mb-3">Personal Portfolio Website</h3>
+                        <p class="text-gray-700 text-sm mb-4">
+                            A responsive portfolio showcasing my skills, experience, and projects.
                         </p>
                         <p class="text-gray-600 text-xs font-semibold mb-4">
-                            Technologies: HTML, CSS, Tailwind CSS, JavaScript.
+                            Technologies: HTML, CSS, Tailwind CSS, JavaScript
                         </p>
                         <div class="flex justify-between items-center">
                             <a href="https://bhushanchavan.vercel.app" target="_blank" class="text-yellow-600 hover:text-yellow-700 font-medium transition-colors flex items-center">
@@ -249,113 +300,112 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
-        
-        <section id="contact" class="container mx-auto py-16 px-4" data-aos="fade-up" data-aos-delay="500">
-            <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">Get in Touch</h2>
-            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-                <p class="text-lg text-gray-700 mb-6 text-center">Have a project in mind or looking to hire? Feel free to reach out!</p>
-                
-                <form action="#" method="POST" class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                        <input type="text" id="name" name="name" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
-                    </div>
-                    <div>
-                        <label for="mobile" class="block text-gray-700 text-sm font-bold mb-2">Mobile Number:</label>
-                        <input type="tel" id="mobile" name="mobile" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
+
+        <section id="contact" class="container mx-auto py-20 px-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+            <h2 class="text-4xl font-bold mb-10 text-gray-800 text-center">Get in Touch</h2>
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-10">
+                <p class="text-lg text-gray-700 mb-8 text-center">Have a project in mind or looking to hire? Let's connect!</p>
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                            <input type="text" id="name" name="name" required class="form-input shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-yellow-600 transition-all duration-300" aria-required="true">
+                        </div>
+                        <div>
+                            <label for="mobile" class="block text-gray-700 text-sm font-bold mb-2">Mobile Number:</label>
+                            <input type="tel" id="mobile" name="mobile" class="form-input shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-yellow-600 transition-all duration-300">
+                        </div>
                     </div>
                     <div>
                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
+                        <input type="email" id="email" name="email" required class="form-input shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-yellow-600 transition-all duration-300" aria-required="true">
                     </div>
                     <div>
                         <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
-                        <input type="text" id="subject" name="subject" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors">
+                        <input type="text" id="subject" name="subject" required class="form-input shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-yellow-600 transition-all duration-300" aria-required="true">
                     </div>
                     <div>
                         <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
-                        <textarea id="message" name="message" rows="5" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-600 transition-colors"></textarea>
+                        <textarea id="message" name="message" rows="5" required class="form-input shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:border-yellow-600 transition-all duration-300" aria-required="true"></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full focus:outline-none focus:shadow-outline transition-colors shadow-lg">
-                            Send Message
-                        </button>
+                        <button type="submit" class="form-button bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-700 hover:to-yellow-600 text-white font-bold py-3 px-10 rounded-full transition-all duration-300 shadow-lg">Send Message</button>
                     </div>
-                </form>
-
-                <div class="mt-8 pt-6 border-t border-gray-200 text-gray-700 text-center">
-                    <p class="font-semibold text-2xl mb-4">You can also connect with me directly!</p>
+                </div>
+                <div class="mt-10 pt-8 border-t border-gray-200 text-gray-700 text-center">
+                    <p class="font-semibold text-2xl mb-4">Connect with me directly!</p>
                     <p class="text-lg">I'm always open to new opportunities and collaborations.</p>
+                    <div class="flex justify-center space-x-6 mt-6 text-2xl">
+                        <a href="tel:+917387421009" class="text-gray-600 hover:text-yellow-600 transition-all duration-300 transform hover:scale-110" aria-label="Call me"><i class="fas fa-phone-alt"></i></a>
+                        <a href="mailto:bhushansonar1235@email.com" class="text-gray-600 hover:text-yellow-600 transition-all duration-300 transform hover:scale-110" aria-label="Email me"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/Bhushan0009" target="_blank" class="text-gray-600 hover:text-yellow-600 transition-all duration-300 transform hover:scale-110" aria-label="My GitHub Profile"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/bhushanchavan09" target="_blank" class="text-gray-600 hover:text-yellow-600 transition-all duration-300 transform hover:scale-110" aria-label="My LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-    
-    <footer id="main-footer" class="bg-gray-900 text-white py-6 shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p class="text-lg text-gray-400 w-full text-center md:flex-grow md:text-left">
-                &copy; 2025 <a href="https://bhushanchavan.vercel.app/" class="hover:text-white transition-colors duration-300">Bhushan Chavan.</a> Built with passion.
+
+    <footer id="main-footer" class="bg-gray-900 text-white py-2 shadow-inner">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center gap-6">
+            <p class="text-lg text-gray-400 text-center">
+                &copy; 2025 <a href="https://bhushanchavan.vercel.app/" class="hover:text-yellow-600 transition-colors duration-300">Bhushan Chavan.</a> Built with passion.
             </p>
-            
-            <div class="flex space-x-6 text-2xl justify-center md:justify-end">
-                <a href="tel:+917387421009" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Call me"><i class="fas fa-phone-alt"></i></a>
-                <a href="mailto:bhushansonar1235@email.com" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Email me"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/Bhushan0009" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="My GitHub Profile"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/bhushanchavan09" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="My LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-            </div>
         </div>
     </footer>
 
-    <button id="back-to-top" title="Go to top">
+    <button id="back-to-top" title="Go to top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-    
+
     <script>
-        // Mobile Menu Toggle functionality
+        // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuItems = mobileMenu.querySelectorAll('a');
 
         menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when a link is clicked
         mobileMenuItems.forEach(item => {
             item.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
                 mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('active');
             });
         });
 
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768) {
+                menuBtn.classList.remove('active');
                 mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('active');
             }
         });
-        
+
+        // AOS Initialization
         AOS.init({
-            duration: 800,
+            duration: 1000,
+            easing: 'ease-in-out',
             once: true,
+            offset: 100,
         });
 
-        // Smooth scroll for nav links without updating URL hash
+        // Smooth Scroll for Nav Links
         document.querySelectorAll('a.nav-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Ensure it's an internal link and not a download link
-                // `target` will be '' or '_self' for internal links, or '_blank' for new tabs
-                // `download` attribute presence indicates a download link
                 if (this.getAttribute('download') === null && (this.target === '' || this.target === '_self')) {
-                    e.preventDefault(); // Prevent default anchor behavior (stops URL hash change)
-
-                    const targetId = this.getAttribute('href').substring(1); // Get the section ID
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
-
                     if (targetElement) {
                         window.scrollTo({
-                            top: targetElement.offsetTop - 70, // Adjust for fixed navbar height (approx 70px)
+                            top: targetElement.offsetTop - 80,
                             behavior: 'smooth'
                         });
                     }
@@ -363,27 +413,23 @@
             });
         });
 
-
-        // Back to Top Button functionality
+        // Back to Top Button
         const backToTopButton = document.getElementById('back-to-top');
-        const footer = document.getElementById('main-footer'); // Get the footer element
+        const footer = document.getElementById('main-footer');
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTopButton.style.display = 'block';
-
                 const footerTop = footer.getBoundingClientRect().top;
                 const viewportHeight = window.innerHeight;
-                const buttonHeight = backToTopButton.offsetHeight; 
-
                 if (footerTop < viewportHeight) {
-                    backToTopButton.style.bottom = `${(viewportHeight - footerTop) + 20}px`;
+                    backToTopButton.style.bottom = `${(viewportHeight - footerTop) + 30}px`;
                 } else {
-                    backToTopButton.style.bottom = '20px';
+                    backToTopButton.style.bottom = '30px';
                 }
             } else {
                 backToTopButton.style.display = 'none';
-                backToTopButton.style.bottom = '20px'; 
+                backToTopButton.style.bottom = '30px';
             }
         });
 
